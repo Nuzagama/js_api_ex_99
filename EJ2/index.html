@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Comentarios</title>
+<style>
+  #salida {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+</style>
+</head>
+<body>
+
+<button id="cargarComentarios">Cargar Comentarios</button>
+<section id="salida"></section>
+
+<script>
+
+document.getElementById('cargarComentarios').addEventListener('click', function() {
+  fetch('https://jsonplaceholder.typicode.com/comments')
+    .then(response => response.json())
+    .then(comentarios => {
+      const salida = document.getElementById('salida');
+      salida.innerHTML = ''; // Limpiar salida anterior
+      
+      comentarios.forEach(comentario => {
+        const div = document.createElement('div');
+        const idPost = document.createElement('h3');
+        if (comentario.postId == 1){
+        idPost.textContent = `Comentario del post ${comentario.postId}`;
+        div.appendChild(idPost);
+        const idComentario = document.createElement('h4');
+        idComentario.textContent = `Comentario #${comentario.id}`;
+        div.appendChild(idComentario);
+        const email = document.createElement('p');
+        email.textContent = comentario.email;
+        div.appendChild(email);
+        const parrafo = document.createElement('p');
+        parrafo.textContent = comentario.body;
+        div.appendChild(parrafo);
+        salida.appendChild(div);
+        }
+
+      });
+    })
+    .catch(error => console.log('Error al cargar los comentarios:', error));
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="estilos.css"> <!-- Si decides añadir estilos -->
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    #tareas li {
+        cursor: pointer;
+    }
+
+    #tareas li.completada {
+        text-decoration: line-through;
+    }
+</style>
+
+<body>
+
+    <div id="app">
+        <form id="nuevaTareaForm">
+            <input type="text" id="tituloTarea" placeholder="Añadir nueva tarea" required>
+            <button type="submit">Añadir Tarea</button>
+        </form>
+        <ul id="tareas"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
